@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Doc QA</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        button { margin: 5px 0; padding: 5px 10px; }
+        #result { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Legal Document QA System</h1>
+        <input type="file" id="pdfUpload" accept=".pdf">
+        <button onclick="uploadFile()">Upload PDF</button>
+        <br>
+        <input type="text" id="queryInput" placeholder="Nhập từ khóa...">
+        <button onclick="queryData()">Tìm kiếm</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function uploadFile() {
+            const fileInput = document.getElementById('pdfUpload');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            const response = await fetch('http://localhost:8000/upload/', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+        }
+
+        async function queryData() {
+            const keyword = document.getElementById('queryInput').value;
+            const response = await fetch(`http://localhost:8000/query/?keyword=${encodeURIComponent(keyword)}`);
+            const data = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
