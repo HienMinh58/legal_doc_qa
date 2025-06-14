@@ -5,20 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legal Doc QA</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .container { max-width: 600px; margin: auto; }
-        button { margin: 5px 0; padding: 5px 10px; }
-        #result { margin-top: 10px; }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input[type="file"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            min-height: 50px;
+        }
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Legal Document QA System</h1>
-        <input type="file" id="pdfUpload" accept=".pdf">
-        <button onclick="uploadFile()">Upload PDF</button>
-        <br>
-        <input type="text" id="queryInput" placeholder="Nhập từ khóa...">
-        <button onclick="queryData()">Tìm kiếm</button>
+        <div class="input-group">
+            <input type="file" id="pdfUpload" accept=".pdf">
+            <button onclick="uploadFile()">Upload PDF</button>
+        </div>
+        <div class="input-group">
+            <input type="text" id="queryInput" placeholder="Nhập từ khóa...">
+            <button onclick="queryData()">Tìm kiếm</button>
+        </div>
         <div id="result"></div>
     </div>
 
